@@ -1,9 +1,30 @@
+public class Location {
+    private double x;
+    private double y;
+    private String name;
+    private String type;
 
-public abstract class Location {
-    protected String name;
-
-    public Location(String name) {
+    public Location(double x, double y, String name, String type) {
+        this.x = x;
+        this.y = y;
         this.name = name;
+        this.type = type;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public String getName() {
@@ -14,66 +35,16 @@ public abstract class Location {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Location location = (Location) o;
-        return name.equals(location.name);
+    public String getType() {
+        return type;
     }
 
-    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String toString() {
-        return name;
-    }
-}
-
-/**
- * Oras cu proprietate specifica: populatie.
- */
-class City extends Location {
-    private int population;
-
-    public City(String name, int population) {
-        super(name); // Aici 'super' apeleaza constructorul din Location(String name)
-        this.population = population;
+        return "Location{name='" + name + "', type='" + type + "', x=" + x + ", y=" + y + "}";
     }
 
-    public int getPopulation() {
-        return population;
-    }
-}
-
-/**
- * Aeroport cu proprietate specifica: numar de terminale.
- */
-class Airport extends Location {
-    private int terminals;
-
-    public Airport(String name, int terminals) {
-        super(name);
-        this.terminals = terminals;
-    }
-
-    public int getTerminals() {
-        return terminals;
-    }
-}
-
-/**
- * Benzinarie cu proprietate specifica: pretul la benzina.
- */
-class GasStation extends Location {
-    private double gasPrice;
-
-    public GasStation(String name, double gasPrice) {
-        super(name);
-        this.gasPrice = gasPrice;
-    }
-
-    public double getGasPrice() {
-        return gasPrice;
-    }
 }

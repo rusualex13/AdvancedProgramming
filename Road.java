@@ -1,36 +1,79 @@
-
-
 public class Road {
-    private RoadType type;
-    private Location from;
-    private Location to;
+    private Location start;
+    private Location end;
+    private String name;
+    private String type;
+    private double length;
+    private int speedLimit;
 
-    public Road(RoadType type, Location from, Location to) {
+    public Road(Location start, Location end, String name, String type, double length, int speedLimit) {
+        this.start = start;
+        this.end = end;
+        this.name = name;
+        this.length = length;
+        this.speedLimit = speedLimit;
         this.type = type;
-        this.from = from;
-        this.to = to;
     }
 
-    public Location getFrom() {
-        return from;
+    public Location getStart() {
+        return start;
     }
 
-    public Location getTo() {
-        return to;
+    public void setStart(Location start) {
+        this.start = start;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Road road))
-            return false;
-        // Doua drumuri sunt egale daca au acelasi tip si leaga aceleasi locatii
-        return type == road.type && from.equals(road.from) && to.equals(road.to);
+    public Location getEnd() {
+        return end;
     }
 
-    @Override
+    public void setEnd(Location end) {
+        this.end = end;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        double minLenght = Math.sqrt(Math.pow(end.getX() - start.getX(), 2) + Math.pow(end.getY() - start.getY(), 2));
+        if (length < minLenght) {
+            System.out.println(
+                    "Atentie: Lungimea drumului " + name + " este prea mica! Se va seta distanta minima: " + minLenght
+                            + "m");
+            this.length = minLenght;
+        } else {
+            this.length = length;
+        }
+    }
+
+    public int getSpeedLimit() {
+        return speedLimit;
+    }
+
+    public void setSpeedLimit(int speedLimit) {
+        this.speedLimit = speedLimit;
+    }
+
     public String toString() {
-        return type + " from " + from + " to " + to;
+        return "Road{name='" + name + "', type='" + type + "', length=" + length + "m, speedLimit=" + speedLimit
+                + "km/h, start=" + start.getName() + ", end=" + end.getName() + "}";
     }
+
 }
